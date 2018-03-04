@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2024
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "performance-tracker", "performance-tracker\performance-tracker.csproj", "{52DAEE4A-174B-4F99-9A9B-DC3BFD2248B6}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{52DAEE4A-174B-4F99-9A9B-DC3BFD2248B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52DAEE4A-174B-4F99-9A9B-DC3BFD2248B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52DAEE4A-174B-4F99-9A9B-DC3BFD2248B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52DAEE4A-174B-4F99-9A9B-DC3BFD2248B6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7C9AB7F3-6585-4792-A779-F0EE2F7305A7}
+	EndGlobalSection
+EndGlobal

@@ -22,7 +22,7 @@ namespace performance_tracker
 
         }
 
-        private void MasterEntry_Click(object sender, EventArgs e)
+        private void MasterEntry_click(object sender, EventArgs e)
         {
 
         }

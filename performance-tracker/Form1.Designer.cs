@@ -57,7 +57,7 @@
             this.Files.Padding = new System.Windows.Forms.Padding(3);
             this.Files.Size = new System.Drawing.Size(835, 337);
             this.Files.TabIndex = 0;
-            this.Files.Text = "Files";
+            this.Files.Text = "File";
             // 
             // MasterEntry
             // 

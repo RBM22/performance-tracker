@@ -27,5 +27,28 @@ namespace performance_tracker
 
         }
 
+        private void openFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FileSelection fs = new FileSelection();
+            fs.ShowDialog();
+        }
+
+        private void componentsMAsterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ComponentDetails cd = new ComponentDetails();
+            cd.ShowDialog();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void projectsMasterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Project_Details pd = new Project_Details();
+            pd.ShowDialog();
+            
+        }
     }
 }

@@ -28,58 +28,96 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.ControlTab = new System.Windows.Forms.TabControl();
-            this.Files = new System.Windows.Forms.TabPage();
-            this.MasterEntry = new System.Windows.Forms.TabPage();
-            this.Reports = new System.Windows.Forms.TabPage();
-            this.ControlTab.SuspendLayout();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.closeFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterDetailsEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectsMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.componentsMAsterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectComponentMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // ControlTab
+            // menuStrip1
             // 
-            this.ControlTab.Controls.Add(this.Files);
-            this.ControlTab.Controls.Add(this.MasterEntry);
-            this.ControlTab.Controls.Add(this.Reports);
-            this.ControlTab.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.ControlTab.Location = new System.Drawing.Point(0, 0);
-            this.ControlTab.Multiline = true;
-            this.ControlTab.Name = "ControlTab";
-            this.ControlTab.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.ControlTab.SelectedIndex = 0;
-            this.ControlTab.Size = new System.Drawing.Size(843, 363);
-            this.ControlTab.TabIndex = 0;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fileToolStripMenuItem,
+            this.masterDetailsEntryToolStripMenuItem,
+            this.reportsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(843, 24);
+            this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.Text = "menuStrip1";
             // 
-            // Files
+            // fileToolStripMenuItem
             // 
-            this.Files.BackColor = System.Drawing.Color.Transparent;
-            this.Files.Location = new System.Drawing.Point(4, 22);
-            this.Files.Name = "Files";
-            this.Files.Padding = new System.Windows.Forms.Padding(3);
-            this.Files.Size = new System.Drawing.Size(835, 337);
-            this.Files.TabIndex = 0;
-            this.Files.Text = "File";
+            this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openFileToolStripMenuItem,
+            this.closeFilesToolStripMenuItem,
+            this.exitToolStripMenuItem});
+            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fileToolStripMenuItem.Text = "File";
             // 
-            // MasterEntry
+            // openFileToolStripMenuItem
             // 
-            this.MasterEntry.Location = new System.Drawing.Point(4, 22);
-            this.MasterEntry.Name = "MasterEntry";
-            this.MasterEntry.Padding = new System.Windows.Forms.Padding(3);
-            this.MasterEntry.Size = new System.Drawing.Size(835, 337);
-            this.MasterEntry.TabIndex = 1;
-            this.MasterEntry.Text = "Master Entry";
-            this.MasterEntry.UseVisualStyleBackColor = true;
-            this.MasterEntry.Click += new System.EventHandler(this.MasterEntry_Click);
+            this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openFileToolStripMenuItem.Text = "Open File/s";
+            this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
-            // Reports
+            // closeFilesToolStripMenuItem
             // 
-            this.Reports.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.Reports.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.Reports.Location = new System.Drawing.Point(4, 22);
-            this.Reports.Name = "Reports";
-            this.Reports.Size = new System.Drawing.Size(835, 337);
-            this.Reports.TabIndex = 2;
-            this.Reports.Text = "Reports";
-            this.Reports.UseVisualStyleBackColor = true;
+            this.closeFilesToolStripMenuItem.Name = "closeFilesToolStripMenuItem";
+            this.closeFilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeFilesToolStripMenuItem.Text = "Close File/s";
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            // 
+            // masterDetailsEntryToolStripMenuItem
+            // 
+            this.masterDetailsEntryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.projectsMasterToolStripMenuItem,
+            this.componentsMAsterToolStripMenuItem,
+            this.projectComponentMasterToolStripMenuItem});
+            this.masterDetailsEntryToolStripMenuItem.Name = "masterDetailsEntryToolStripMenuItem";
+            this.masterDetailsEntryToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
+            this.masterDetailsEntryToolStripMenuItem.Text = "Master Details Entry";
+            // 
+            // projectsMasterToolStripMenuItem
+            // 
+            this.projectsMasterToolStripMenuItem.Name = "projectsMasterToolStripMenuItem";
+            this.projectsMasterToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.projectsMasterToolStripMenuItem.Text = "Projects Master";
+            this.projectsMasterToolStripMenuItem.Click += new System.EventHandler(this.projectsMasterToolStripMenuItem_Click);
+            // 
+            // componentsMAsterToolStripMenuItem
+            // 
+            this.componentsMAsterToolStripMenuItem.Name = "componentsMAsterToolStripMenuItem";
+            this.componentsMAsterToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.componentsMAsterToolStripMenuItem.Text = "Components Master";
+            this.componentsMAsterToolStripMenuItem.Click += new System.EventHandler(this.componentsMAsterToolStripMenuItem_Click);
+            // 
+            // projectComponentMasterToolStripMenuItem
+            // 
+            this.projectComponentMasterToolStripMenuItem.Name = "projectComponentMasterToolStripMenuItem";
+            this.projectComponentMasterToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
+            this.projectComponentMasterToolStripMenuItem.Text = "Project-Component Master";
+            // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportsToolStripMenuItem.Text = "Reports";
             // 
             // MenuForm
             // 
@@ -87,22 +125,31 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(843, 363);
-            this.Controls.Add(this.ControlTab);
+            this.Controls.Add(this.menuStrip1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "MenuForm";
             this.Text = "PerformanceTracker";
             this.Load += new System.EventHandler(this.MenuForm_Load);
-            this.ControlTab.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl ControlTab;
-        private System.Windows.Forms.TabPage Files;
-        private System.Windows.Forms.TabPage MasterEntry;
-        private System.Windows.Forms.TabPage Reports;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem closeFilesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem masterDetailsEntryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectsMasterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem componentsMAsterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectComponentMasterToolStripMenuItem;
     }
 }
 

@@ -1,0 +1,225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PerformaneAnalyzerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ComponentDetails">
+          <Key>
+            <PropertyRef Name="CompId" />
+          </Key>
+          <Property Name="CompId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompName" Type="nvarchar" MaxLength="250" />
+          <Property Name="CompDescription" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="OperatorDetails">
+          <Key>
+            <PropertyRef Name="OprtrId" />
+          </Key>
+          <Property Name="OprtrId" Type="int" Nullable="false" />
+          <Property Name="OprtrName" Type="nvarchar" MaxLength="250" />
+          <Property Name="OprtrDescription" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProjectComponentDetails">
+          <Key>
+            <PropertyRef Name="ProjCompId" />
+          </Key>
+          <Property Name="ProjCompId" Type="int" Nullable="false" />
+          <Property Name="Prjid" Type="int" Nullable="false" />
+          <Property Name="Cmpid" Type="int" Nullable="false" />
+          <Property Name="prjcmpDesc" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProjectDetails">
+          <Key>
+            <PropertyRef Name="ProjId" />
+          </Key>
+          <Property Name="ProjId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjName" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProjDescription" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <Association Name="FK_ProjectComponentDetails_ProjectComponentDetails">
+          <End Role="ComponentDetails" Type="Self.ComponentDetails" Multiplicity="1" />
+          <End Role="ProjectComponentDetails" Type="Self.ProjectComponentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentDetails">
+              <PropertyRef Name="CompId" />
+            </Principal>
+            <Dependent Role="ProjectComponentDetails">
+              <PropertyRef Name="Cmpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectComponentDetails_ProjectDetails">
+          <End Role="ProjectDetails" Type="Self.ProjectDetails" Multiplicity="1" />
+          <End Role="ProjectComponentDetails" Type="Self.ProjectComponentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectDetails">
+              <PropertyRef Name="ProjId" />
+            </Principal>
+            <Dependent Role="ProjectComponentDetails">
+              <PropertyRef Name="Prjid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PerformaneAnalyzerModelStoreContainer">
+          <EntitySet Name="ComponentDetails" EntityType="Self.ComponentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperatorDetails" EntityType="Self.OperatorDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectComponentDetails" EntityType="Self.ProjectComponentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProjectComponentDetails_ProjectComponentDetails" Association="Self.FK_ProjectComponentDetails_ProjectComponentDetails">
+            <End Role="ComponentDetails" EntitySet="ComponentDetails" />
+            <End Role="ProjectComponentDetails" EntitySet="ProjectComponentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectComponentDetails_ProjectDetails" Association="Self.FK_ProjectComponentDetails_ProjectDetails">
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+            <End Role="ProjectComponentDetails" EntitySet="ProjectComponentDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PerformaneAnalyzerModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="ComponentDetail">
+          <Key>
+            <PropertyRef Name="CompId" />
+          </Key>
+          <Property Name="CompId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="CompDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProjectComponentDetails" Relationship="Self.FK_ProjectComponentDetails_ProjectComponentDetails" FromRole="ComponentDetails" ToRole="ProjectComponentDetails" />
+        </EntityType>
+        <EntityType Name="OperatorDetail">
+          <Key>
+            <PropertyRef Name="OprtrId" />
+          </Key>
+          <Property Name="OprtrId" Type="Int32" Nullable="false" />
+          <Property Name="OprtrName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OprtrDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjectComponentDetail">
+          <Key>
+            <PropertyRef Name="ProjCompId" />
+          </Key>
+          <Property Name="ProjCompId" Type="Int32" Nullable="false" />
+          <Property Name="Prjid" Type="Int32" Nullable="false" />
+          <Property Name="Cmpid" Type="Int32" Nullable="false" />
+          <Property Name="prjcmpDesc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ComponentDetail" Relationship="Self.FK_ProjectComponentDetails_ProjectComponentDetails" FromRole="ProjectComponentDetails" ToRole="ComponentDetails" />
+          <NavigationProperty Name="ProjectDetail" Relationship="Self.FK_ProjectComponentDetails_ProjectDetails" FromRole="ProjectComponentDetails" ToRole="ProjectDetails" />
+        </EntityType>
+        <EntityType Name="ProjectDetail">
+          <Key>
+            <PropertyRef Name="ProjId" />
+          </Key>
+          <Property Name="ProjId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProjDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProjectComponentDetails" Relationship="Self.FK_ProjectComponentDetails_ProjectDetails" FromRole="ProjectDetails" ToRole="ProjectComponentDetails" />
+        </EntityType>
+        <Association Name="FK_ProjectComponentDetails_ProjectComponentDetails">
+          <End Role="ComponentDetails" Type="Self.ComponentDetail" Multiplicity="1" />
+          <End Role="ProjectComponentDetails" Type="Self.ProjectComponentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ComponentDetails">
+              <PropertyRef Name="CompId" />
+            </Principal>
+            <Dependent Role="ProjectComponentDetails">
+              <PropertyRef Name="Cmpid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectComponentDetails_ProjectDetails">
+          <End Role="ProjectDetails" Type="Self.ProjectDetail" Multiplicity="1" />
+          <End Role="ProjectComponentDetails" Type="Self.ProjectComponentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectDetails">
+              <PropertyRef Name="ProjId" />
+            </Principal>
+            <Dependent Role="ProjectComponentDetails">
+              <PropertyRef Name="Prjid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PerformaneAnalyzerEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ComponentDetails" EntityType="Self.ComponentDetail" />
+          <EntitySet Name="OperatorDetails" EntityType="Self.OperatorDetail" />
+          <EntitySet Name="ProjectComponentDetails" EntityType="Self.ProjectComponentDetail" />
+          <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetail" />
+          <AssociationSet Name="FK_ProjectComponentDetails_ProjectComponentDetails" Association="Self.FK_ProjectComponentDetails_ProjectComponentDetails">
+            <End Role="ComponentDetails" EntitySet="ComponentDetails" />
+            <End Role="ProjectComponentDetails" EntitySet="ProjectComponentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectComponentDetails_ProjectDetails" Association="Self.FK_ProjectComponentDetails_ProjectDetails">
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+            <End Role="ProjectComponentDetails" EntitySet="ProjectComponentDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PerformaneAnalyzerModelStoreContainer" CdmEntityContainer="PerformaneAnalyzerEntities">
+          <EntitySetMapping Name="ComponentDetails">
+            <EntityTypeMapping TypeName="PerformaneAnalyzerModel.ComponentDetail">
+              <MappingFragment StoreEntitySet="ComponentDetails">
+                <ScalarProperty Name="CompId" ColumnName="CompId" />
+                <ScalarProperty Name="CompName" ColumnName="CompName" />
+                <ScalarProperty Name="CompDescription" ColumnName="CompDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperatorDetails">
+            <EntityTypeMapping TypeName="PerformaneAnalyzerModel.OperatorDetail">
+              <MappingFragment StoreEntitySet="OperatorDetails">
+                <ScalarProperty Name="OprtrId" ColumnName="OprtrId" />
+                <ScalarProperty Name="OprtrName" ColumnName="OprtrName" />
+                <ScalarProperty Name="OprtrDescription" ColumnName="OprtrDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectComponentDetails">
+            <EntityTypeMapping TypeName="PerformaneAnalyzerModel.ProjectComponentDetail">
+              <MappingFragment StoreEntitySet="ProjectComponentDetails">
+                <ScalarProperty Name="ProjCompId" ColumnName="ProjCompId" />
+                <ScalarProperty Name="Prjid" ColumnName="Prjid" />
+                <ScalarProperty Name="Cmpid" ColumnName="Cmpid" />
+                <ScalarProperty Name="prjcmpDesc" ColumnName="prjcmpDesc" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectDetails">
+            <EntityTypeMapping TypeName="PerformaneAnalyzerModel.ProjectDetail">
+              <MappingFragment StoreEntitySet="ProjectDetails">
+                <ScalarProperty Name="ProjId" ColumnName="ProjId" />
+                <ScalarProperty Name="ProjName" ColumnName="ProjName" />
+                <ScalarProperty Name="ProjDescription" ColumnName="ProjDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

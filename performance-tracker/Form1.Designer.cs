@@ -34,10 +34,11 @@
             this.closeFilesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterDetailsEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.projectsMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.componentsMAsterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.projectComponentMasterToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.machineDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.projectDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.componentDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operationDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.operatorDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -45,8 +46,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.masterDetailsEntryToolStripMenuItem,
-            this.reportsToolStripMenuItem});
+            this.masterDetailsEntryToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(843, 24);
@@ -66,58 +66,69 @@
             // openFileToolStripMenuItem
             // 
             this.openFileToolStripMenuItem.Name = "openFileToolStripMenuItem";
-            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openFileToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.openFileToolStripMenuItem.Text = "Open File/s";
             this.openFileToolStripMenuItem.Click += new System.EventHandler(this.openFileToolStripMenuItem_Click);
             // 
             // closeFilesToolStripMenuItem
             // 
             this.closeFilesToolStripMenuItem.Name = "closeFilesToolStripMenuItem";
-            this.closeFilesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.closeFilesToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.closeFilesToolStripMenuItem.Text = "Close File/s";
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(134, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
             // masterDetailsEntryToolStripMenuItem
             // 
             this.masterDetailsEntryToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.projectsMasterToolStripMenuItem,
-            this.componentsMAsterToolStripMenuItem,
-            this.projectComponentMasterToolStripMenuItem});
+            this.machineDetailsToolStripMenuItem,
+            this.projectDetailsToolStripMenuItem,
+            this.componentDetailsToolStripMenuItem,
+            this.operationDetailsToolStripMenuItem,
+            this.operatorDetailsToolStripMenuItem});
             this.masterDetailsEntryToolStripMenuItem.Name = "masterDetailsEntryToolStripMenuItem";
             this.masterDetailsEntryToolStripMenuItem.Size = new System.Drawing.Size(123, 20);
             this.masterDetailsEntryToolStripMenuItem.Text = "Master Details Entry";
             // 
-            // projectsMasterToolStripMenuItem
+            // machineDetailsToolStripMenuItem
             // 
-            this.projectsMasterToolStripMenuItem.Name = "projectsMasterToolStripMenuItem";
-            this.projectsMasterToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.projectsMasterToolStripMenuItem.Text = "Projects Master";
-            this.projectsMasterToolStripMenuItem.Click += new System.EventHandler(this.projectsMasterToolStripMenuItem_Click);
+            this.machineDetailsToolStripMenuItem.Name = "machineDetailsToolStripMenuItem";
+            this.machineDetailsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.machineDetailsToolStripMenuItem.Text = "Machine Details";
+            this.machineDetailsToolStripMenuItem.Click += new System.EventHandler(this.machineDetailsToolStripMenuItem_Click_1);
             // 
-            // componentsMAsterToolStripMenuItem
+            // projectDetailsToolStripMenuItem
             // 
-            this.componentsMAsterToolStripMenuItem.Name = "componentsMAsterToolStripMenuItem";
-            this.componentsMAsterToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.componentsMAsterToolStripMenuItem.Text = "Components Master";
-            this.componentsMAsterToolStripMenuItem.Click += new System.EventHandler(this.componentsMAsterToolStripMenuItem_Click);
+            this.projectDetailsToolStripMenuItem.Name = "projectDetailsToolStripMenuItem";
+            this.projectDetailsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.projectDetailsToolStripMenuItem.Text = "Project Details";
+            this.projectDetailsToolStripMenuItem.Click += new System.EventHandler(this.projectDetailsToolStripMenuItem_Click);
             // 
-            // projectComponentMasterToolStripMenuItem
+            // componentDetailsToolStripMenuItem
             // 
-            this.projectComponentMasterToolStripMenuItem.Name = "projectComponentMasterToolStripMenuItem";
-            this.projectComponentMasterToolStripMenuItem.Size = new System.Drawing.Size(219, 22);
-            this.projectComponentMasterToolStripMenuItem.Text = "Project-Component Master";
+            this.componentDetailsToolStripMenuItem.Name = "componentDetailsToolStripMenuItem";
+            this.componentDetailsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.componentDetailsToolStripMenuItem.Text = "Component Details";
+            this.componentDetailsToolStripMenuItem.Click += new System.EventHandler(this.componentDetailsToolStripMenuItem_Click);
             // 
-            // reportsToolStripMenuItem
+            // operationDetailsToolStripMenuItem
             // 
-            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
-            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.reportsToolStripMenuItem.Text = "Reports";
+            this.operationDetailsToolStripMenuItem.Name = "operationDetailsToolStripMenuItem";
+            this.operationDetailsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.operationDetailsToolStripMenuItem.Text = "Operation Details";
+            this.operationDetailsToolStripMenuItem.Click += new System.EventHandler(this.operationDetailsToolStripMenuItem_Click);
+            // 
+            // operatorDetailsToolStripMenuItem
+            // 
+            this.operatorDetailsToolStripMenuItem.Name = "operatorDetailsToolStripMenuItem";
+            this.operatorDetailsToolStripMenuItem.Size = new System.Drawing.Size(176, 22);
+            this.operatorDetailsToolStripMenuItem.Text = "Operator Details";
+            this.operatorDetailsToolStripMenuItem.Click += new System.EventHandler(this.operatorDetailsToolStripMenuItem_Click);
             // 
             // MenuForm
             // 
@@ -144,12 +155,13 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem closeFilesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem masterDetailsEntryToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem projectsMasterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem componentsMAsterToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem projectComponentMasterToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem masterDetailsEntryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem machineDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem projectDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem componentDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operationDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem operatorDetailsToolStripMenuItem;
     }
 }
 

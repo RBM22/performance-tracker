@@ -17,13 +17,19 @@ namespace performance_tracker
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProjectDetail()
         {
+            this.ComponentDetails = new HashSet<ComponentDetail>();
             this.ProjectComponentDetails = new HashSet<ProjectComponentDetail>();
         }
     
         public int ProjId { get; set; }
         public string ProjName { get; set; }
         public string ProjDescription { get; set; }
+        public Nullable<int> ProjectID { get; set; }
+        public Nullable<int> MachId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ComponentDetail> ComponentDetails { get; set; }
+        public virtual MachineDetail MachineDetail { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProjectComponentDetail> ProjectComponentDetails { get; set; }
     }

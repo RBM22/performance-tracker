@@ -12,20 +12,20 @@ namespace performance_tracker
     using System;
     using System.Collections.Generic;
     
-    public partial class OperatorDetail
+    public partial class MachineDetail
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public OperatorDetail()
+        public MachineDetail()
         {
-            this.OperationDetails = new HashSet<OperationDetail>();
+            this.ProjectDetails = new HashSet<ProjectDetail>();
         }
     
-        public int OprtrId { get; set; }
-        public string OprtrName { get; set; }
-        public string OprtrDescription { get; set; }
-        public Nullable<int> OperatorID { get; set; }
+        public int MachId { get; set; }
+        public string MachName { get; set; }
+        public string MachDesc { get; set; }
+        public Nullable<int> MachineID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OperationDetail> OperationDetails { get; set; }
+        public virtual ICollection<ProjectDetail> ProjectDetails { get; set; }
     }
 }

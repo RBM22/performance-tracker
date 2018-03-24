@@ -132,5 +132,12 @@ namespace performance_tracker
                 MessageBox.Show("Unexpected error occured"+err);
             }
         }
+
+        private void btnComp_Click(object sender, EventArgs e)
+        {
+            ComponentDetails Cd = new ComponentDetails();
+            Cd.ShowDialog();
+            this.Close();
+        }
     }
 }

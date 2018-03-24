@@ -18,8 +18,8 @@ namespace performance_tracker
         public int Prjid { get; set; }
         public int Cmpid { get; set; }
         public string prjcmpDesc { get; set; }
+        public Nullable<int> ComponentId { get; set; }
     
-        public virtual ComponentDetail ComponentDetail { get; set; }
         public virtual ProjectDetail ProjectDetail { get; set; }
     }
 }

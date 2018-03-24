@@ -31,6 +31,26 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -59,16 +79,16 @@
     <Compile Include="ComponentDetail.cs">
       <DependentUpon>PerformanceTrackerModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="ComponentDetails.cs">
+    <Compile Include="Forms\ComponentDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ComponentDetails.Designer.cs">
+    <Compile Include="Forms\ComponentDetails.Designer.cs">
       <DependentUpon>ComponentDetails.cs</DependentUpon>
     </Compile>
-    <Compile Include="FileSelection.cs">
+    <Compile Include="Forms\FileSelection.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FileSelection.Designer.cs">
+    <Compile Include="Forms\FileSelection.Designer.cs">
       <DependentUpon>FileSelection.cs</DependentUpon>
     </Compile>
     <Compile Include="Form1.cs">
@@ -77,14 +97,32 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="OperatorDetail.cs">
-      <DependentUpon>PerformanceTrackerModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="OperatorDetails.cs">
+    <Compile Include="Forms\MachineDetails.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="OperatorDetails.Designer.cs">
+    <Compile Include="Forms\MachineDetails.Designer.cs">
+      <DependentUpon>MachineDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OperationDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OperationDetails.Designer.cs">
+      <DependentUpon>OperationDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OperatorDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OperatorDetails.Designer.cs">
       <DependentUpon>OperatorDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MachineDetail.cs">
+      <DependentUpon>PerformanceTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationDetail.cs">
+      <DependentUpon>PerformanceTrackerModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperatorDetail.cs">
+      <DependentUpon>PerformanceTrackerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PerformanceTrackerModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -102,10 +140,10 @@
       <DependentUpon>PerformanceTrackerModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="Project Details.cs">
+    <Compile Include="Forms\Project Details.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Project Details.Designer.cs">
+    <Compile Include="Forms\Project Details.Designer.cs">
       <DependentUpon>Project Details.cs</DependentUpon>
     </Compile>
     <Compile Include="ProjectComponentDetail.cs">
@@ -115,19 +153,25 @@
       <DependentUpon>PerformanceTrackerModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ComponentDetails.resx">
+    <EmbeddedResource Include="Forms\ComponentDetails.resx">
       <DependentUpon>ComponentDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FileSelection.resx">
+    <EmbeddedResource Include="Forms\FileSelection.resx">
       <DependentUpon>FileSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OperatorDetails.resx">
+    <EmbeddedResource Include="Forms\MachineDetails.resx">
+      <DependentUpon>MachineDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OperationDetails.resx">
+      <DependentUpon>OperationDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OperatorDetails.resx">
       <DependentUpon>OperatorDetails.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Project Details.resx">
+    <EmbeddedResource Include="Forms\Project Details.resx">
       <DependentUpon>Project Details.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">

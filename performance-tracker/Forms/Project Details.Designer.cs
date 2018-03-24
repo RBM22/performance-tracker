@@ -40,6 +40,7 @@
             this.ProjId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProjDesc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnComp = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.ProjDGV)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,12 +154,23 @@
             this.ProjDesc.Name = "ProjDesc";
             this.ProjDesc.Width = 200;
             // 
+            // btnComp
+            // 
+            this.btnComp.Location = new System.Drawing.Point(294, 290);
+            this.btnComp.Name = "btnComp";
+            this.btnComp.Size = new System.Drawing.Size(120, 23);
+            this.btnComp.TabIndex = 4;
+            this.btnComp.Text = "Component Details";
+            this.btnComp.UseVisualStyleBackColor = true;
+            this.btnComp.Click += new System.EventHandler(this.btnComp_Click);
+            // 
             // Project_Details
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HotTrack;
             this.ClientSize = new System.Drawing.Size(449, 321);
+            this.Controls.Add(this.btnComp);
             this.Controls.Add(this.ProjDGV);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnClear);
@@ -191,5 +203,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjId;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ProjDesc;
+        private System.Windows.Forms.Button btnComp;
     }
 }

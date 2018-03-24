@@ -12,6 +12,31 @@
           <Property Name="CompId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CompName" Type="nvarchar" MaxLength="250" />
           <Property Name="CompDescription" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProjId" Type="int" />
+          <Property Name="ComponetID" Type="int" />
+        </EntityType>
+        <EntityType Name="MachineDetails">
+          <Key>
+            <PropertyRef Name="MachId" />
+          </Key>
+          <Property Name="MachId" Type="int" Nullable="false" />
+          <Property Name="MachName" Type="nvarchar" MaxLength="250" />
+          <Property Name="MachDesc" Type="nvarchar" MaxLength="250" />
+          <Property Name="MachineID" Type="int" />
+        </EntityType>
+        <EntityType Name="OperationDetails">
+          <Key>
+            <PropertyRef Name="OprtnId" />
+          </Key>
+          <Property Name="OprtnId" Type="int" Nullable="false" />
+          <Property Name="OperationId" Type="int" />
+          <Property Name="OprnName" Type="nvarchar" MaxLength="250" />
+          <Property Name="deleted" Type="bit" />
+          <Property Name="DelayTime" Type="datetime" />
+          <Property Name="CycleTime" Type="datetime" />
+          <Property Name="CompId" Type="int" />
+          <Property Name="OprnDescription" Type="nvarchar" MaxLength="250" />
+          <Property Name="OprtrId" Type="int" />
         </EntityType>
         <EntityType Name="OperatorDetails">
           <Key>
@@ -20,6 +45,7 @@
           <Property Name="OprtrId" Type="int" Nullable="false" />
           <Property Name="OprtrName" Type="nvarchar" MaxLength="250" />
           <Property Name="OprtrDescription" Type="nvarchar" MaxLength="250" />
+          <Property Name="OperatorID" Type="int" />
         </EntityType>
         <EntityType Name="ProjectComponentDetails">
           <Key>
@@ -29,6 +55,7 @@
           <Property Name="Prjid" Type="int" Nullable="false" />
           <Property Name="Cmpid" Type="int" Nullable="false" />
           <Property Name="prjcmpDesc" Type="nvarchar" MaxLength="250" />
+          <Property Name="ComponentId" Type="int" />
         </EntityType>
         <EntityType Name="ProjectDetails">
           <Key>
@@ -37,16 +64,42 @@
           <Property Name="ProjId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ProjName" Type="nvarchar" MaxLength="250" />
           <Property Name="ProjDescription" Type="nvarchar" MaxLength="250" />
+          <Property Name="ProjectID" Type="int" />
+          <Property Name="MachId" Type="int" />
         </EntityType>
-        <Association Name="FK_ProjectComponentDetails_ProjectComponentDetails">
-          <End Role="ComponentDetails" Type="Self.ComponentDetails" Multiplicity="1" />
-          <End Role="ProjectComponentDetails" Type="Self.ProjectComponentDetails" Multiplicity="*" />
+        <Association Name="FK_ComponentDetails_ProjectDetails">
+          <End Role="ProjectDetails" Type="Self.ProjectDetails" Multiplicity="0..1" />
+          <End Role="ComponentDetails" Type="Self.ComponentDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectDetails">
+              <PropertyRef Name="ProjId" />
+            </Principal>
+            <Dependent Role="ComponentDetails">
+              <PropertyRef Name="ProjId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationDetails_ComponentDetails">
+          <End Role="ComponentDetails" Type="Self.ComponentDetails" Multiplicity="0..1" />
+          <End Role="OperationDetails" Type="Self.OperationDetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ComponentDetails">
               <PropertyRef Name="CompId" />
             </Principal>
-            <Dependent Role="ProjectComponentDetails">
-              <PropertyRef Name="Cmpid" />
+            <Dependent Role="OperationDetails">
+              <PropertyRef Name="CompId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationDetails_OperatorDetails">
+          <End Role="OperatorDetails" Type="Self.OperatorDetails" Multiplicity="0..1" />
+          <End Role="OperationDetails" Type="Self.OperationDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatorDetails">
+              <PropertyRef Name="OprtrId" />
+            </Principal>
+            <Dependent Role="OperationDetails">
+              <PropertyRef Name="OprtrId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -62,18 +115,44 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProjectDetails_MachineDetails">
+          <End Role="MachineDetails" Type="Self.MachineDetails" Multiplicity="0..1" />
+          <End Role="ProjectDetails" Type="Self.ProjectDetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineDetails">
+              <PropertyRef Name="MachId" />
+            </Principal>
+            <Dependent Role="ProjectDetails">
+              <PropertyRef Name="MachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="PerformaneAnalyzerModelStoreContainer">
           <EntitySet Name="ComponentDetails" EntityType="Self.ComponentDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MachineDetails" EntityType="Self.MachineDetails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperationDetails" EntityType="Self.OperationDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OperatorDetails" EntityType="Self.OperatorDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectComponentDetails" EntityType="Self.ProjectComponentDetails" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetails" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_ProjectComponentDetails_ProjectComponentDetails" Association="Self.FK_ProjectComponentDetails_ProjectComponentDetails">
+          <AssociationSet Name="FK_ComponentDetails_ProjectDetails" Association="Self.FK_ComponentDetails_ProjectDetails">
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
             <End Role="ComponentDetails" EntitySet="ComponentDetails" />
-            <End Role="ProjectComponentDetails" EntitySet="ProjectComponentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationDetails_ComponentDetails" Association="Self.FK_OperationDetails_ComponentDetails">
+            <End Role="ComponentDetails" EntitySet="ComponentDetails" />
+            <End Role="OperationDetails" EntitySet="OperationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationDetails_OperatorDetails" Association="Self.FK_OperationDetails_OperatorDetails">
+            <End Role="OperatorDetails" EntitySet="OperatorDetails" />
+            <End Role="OperationDetails" EntitySet="OperationDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectComponentDetails_ProjectDetails" Association="Self.FK_ProjectComponentDetails_ProjectDetails">
             <End Role="ProjectDetails" EntitySet="ProjectDetails" />
             <End Role="ProjectComponentDetails" EntitySet="ProjectComponentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDetails_MachineDetails" Association="Self.FK_ProjectDetails_MachineDetails">
+            <End Role="MachineDetails" EntitySet="MachineDetails" />
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -88,7 +167,36 @@
           <Property Name="CompId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CompName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="CompDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProjectComponentDetails" Relationship="Self.FK_ProjectComponentDetails_ProjectComponentDetails" FromRole="ComponentDetails" ToRole="ProjectComponentDetails" />
+          <Property Name="ProjId" Type="Int32" />
+          <Property Name="ComponetID" Type="Int32" />
+          <NavigationProperty Name="ProjectDetail" Relationship="Self.FK_ComponentDetails_ProjectDetails" FromRole="ComponentDetails" ToRole="ProjectDetails" />
+          <NavigationProperty Name="OperationDetails" Relationship="Self.FK_OperationDetails_ComponentDetails" FromRole="ComponentDetails" ToRole="OperationDetails" />
+        </EntityType>
+        <EntityType Name="MachineDetail">
+          <Key>
+            <PropertyRef Name="MachId" />
+          </Key>
+          <Property Name="MachId" Type="Int32" Nullable="false" />
+          <Property Name="MachName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MachDesc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="MachineID" Type="Int32" />
+          <NavigationProperty Name="ProjectDetails" Relationship="Self.FK_ProjectDetails_MachineDetails" FromRole="MachineDetails" ToRole="ProjectDetails" />
+        </EntityType>
+        <EntityType Name="OperationDetail">
+          <Key>
+            <PropertyRef Name="OprtnId" />
+          </Key>
+          <Property Name="OprtnId" Type="Int32" Nullable="false" />
+          <Property Name="OperationId" Type="Int32" />
+          <Property Name="OprnName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="deleted" Type="Boolean" />
+          <Property Name="DelayTime" Type="DateTime" Precision="3" />
+          <Property Name="CycleTime" Type="DateTime" Precision="3" />
+          <Property Name="CompId" Type="Int32" />
+          <Property Name="OprnDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OprtrId" Type="Int32" />
+          <NavigationProperty Name="ComponentDetail" Relationship="Self.FK_OperationDetails_ComponentDetails" FromRole="OperationDetails" ToRole="ComponentDetails" />
+          <NavigationProperty Name="OperatorDetail" Relationship="Self.FK_OperationDetails_OperatorDetails" FromRole="OperationDetails" ToRole="OperatorDetails" />
         </EntityType>
         <EntityType Name="OperatorDetail">
           <Key>
@@ -97,6 +205,8 @@
           <Property Name="OprtrId" Type="Int32" Nullable="false" />
           <Property Name="OprtrName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="OprtrDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OperatorID" Type="Int32" />
+          <NavigationProperty Name="OperationDetails" Relationship="Self.FK_OperationDetails_OperatorDetails" FromRole="OperatorDetails" ToRole="OperationDetails" />
         </EntityType>
         <EntityType Name="ProjectComponentDetail">
           <Key>
@@ -106,7 +216,7 @@
           <Property Name="Prjid" Type="Int32" Nullable="false" />
           <Property Name="Cmpid" Type="Int32" Nullable="false" />
           <Property Name="prjcmpDesc" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ComponentDetail" Relationship="Self.FK_ProjectComponentDetails_ProjectComponentDetails" FromRole="ProjectComponentDetails" ToRole="ComponentDetails" />
+          <Property Name="ComponentId" Type="Int32" />
           <NavigationProperty Name="ProjectDetail" Relationship="Self.FK_ProjectComponentDetails_ProjectDetails" FromRole="ProjectComponentDetails" ToRole="ProjectDetails" />
         </EntityType>
         <EntityType Name="ProjectDetail">
@@ -116,17 +226,57 @@
           <Property Name="ProjId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProjName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ProjDescription" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectID" Type="Int32" />
+          <Property Name="MachId" Type="Int32" />
+          <NavigationProperty Name="ComponentDetails" Relationship="Self.FK_ComponentDetails_ProjectDetails" FromRole="ProjectDetails" ToRole="ComponentDetails" />
+          <NavigationProperty Name="MachineDetail" Relationship="Self.FK_ProjectDetails_MachineDetails" FromRole="ProjectDetails" ToRole="MachineDetails" />
           <NavigationProperty Name="ProjectComponentDetails" Relationship="Self.FK_ProjectComponentDetails_ProjectDetails" FromRole="ProjectDetails" ToRole="ProjectComponentDetails" />
         </EntityType>
-        <Association Name="FK_ProjectComponentDetails_ProjectComponentDetails">
-          <End Role="ComponentDetails" Type="Self.ComponentDetail" Multiplicity="1" />
-          <End Role="ProjectComponentDetails" Type="Self.ProjectComponentDetail" Multiplicity="*" />
+        <Association Name="FK_ComponentDetails_ProjectDetails">
+          <End Role="ProjectDetails" Type="Self.ProjectDetail" Multiplicity="0..1" />
+          <End Role="ComponentDetails" Type="Self.ComponentDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectDetails">
+              <PropertyRef Name="ProjId" />
+            </Principal>
+            <Dependent Role="ComponentDetails">
+              <PropertyRef Name="ProjId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationDetails_ComponentDetails">
+          <End Role="ComponentDetails" Type="Self.ComponentDetail" Multiplicity="0..1" />
+          <End Role="OperationDetails" Type="Self.OperationDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ComponentDetails">
               <PropertyRef Name="CompId" />
             </Principal>
-            <Dependent Role="ProjectComponentDetails">
-              <PropertyRef Name="Cmpid" />
+            <Dependent Role="OperationDetails">
+              <PropertyRef Name="CompId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectDetails_MachineDetails">
+          <End Role="MachineDetails" Type="Self.MachineDetail" Multiplicity="0..1" />
+          <End Role="ProjectDetails" Type="Self.ProjectDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MachineDetails">
+              <PropertyRef Name="MachId" />
+            </Principal>
+            <Dependent Role="ProjectDetails">
+              <PropertyRef Name="MachId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OperationDetails_OperatorDetails">
+          <End Role="OperatorDetails" Type="Self.OperatorDetail" Multiplicity="0..1" />
+          <End Role="OperationDetails" Type="Self.OperationDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperatorDetails">
+              <PropertyRef Name="OprtrId" />
+            </Principal>
+            <Dependent Role="OperationDetails">
+              <PropertyRef Name="OprtrId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -144,12 +294,26 @@
         </Association>
         <EntityContainer Name="PerformaneAnalyzerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ComponentDetails" EntityType="Self.ComponentDetail" />
+          <EntitySet Name="MachineDetails" EntityType="Self.MachineDetail" />
+          <EntitySet Name="OperationDetails" EntityType="Self.OperationDetail" />
           <EntitySet Name="OperatorDetails" EntityType="Self.OperatorDetail" />
           <EntitySet Name="ProjectComponentDetails" EntityType="Self.ProjectComponentDetail" />
           <EntitySet Name="ProjectDetails" EntityType="Self.ProjectDetail" />
-          <AssociationSet Name="FK_ProjectComponentDetails_ProjectComponentDetails" Association="Self.FK_ProjectComponentDetails_ProjectComponentDetails">
+          <AssociationSet Name="FK_ComponentDetails_ProjectDetails" Association="Self.FK_ComponentDetails_ProjectDetails">
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
             <End Role="ComponentDetails" EntitySet="ComponentDetails" />
-            <End Role="ProjectComponentDetails" EntitySet="ProjectComponentDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationDetails_ComponentDetails" Association="Self.FK_OperationDetails_ComponentDetails">
+            <End Role="ComponentDetails" EntitySet="ComponentDetails" />
+            <End Role="OperationDetails" EntitySet="OperationDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectDetails_MachineDetails" Association="Self.FK_ProjectDetails_MachineDetails">
+            <End Role="MachineDetails" EntitySet="MachineDetails" />
+            <End Role="ProjectDetails" EntitySet="ProjectDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OperationDetails_OperatorDetails" Association="Self.FK_OperationDetails_OperatorDetails">
+            <End Role="OperatorDetails" EntitySet="OperatorDetails" />
+            <End Role="OperationDetails" EntitySet="OperationDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_ProjectComponentDetails_ProjectDetails" Association="Self.FK_ProjectComponentDetails_ProjectDetails">
             <End Role="ProjectDetails" EntitySet="ProjectDetails" />
@@ -168,6 +332,33 @@
                 <ScalarProperty Name="CompId" ColumnName="CompId" />
                 <ScalarProperty Name="CompName" ColumnName="CompName" />
                 <ScalarProperty Name="CompDescription" ColumnName="CompDescription" />
+                <ScalarProperty Name="ProjId" ColumnName="ProjId" />
+                <ScalarProperty Name="ComponetID" ColumnName="ComponetID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MachineDetails">
+            <EntityTypeMapping TypeName="PerformaneAnalyzerModel.MachineDetail">
+              <MappingFragment StoreEntitySet="MachineDetails">
+                <ScalarProperty Name="MachId" ColumnName="MachId" />
+                <ScalarProperty Name="MachName" ColumnName="MachName" />
+                <ScalarProperty Name="MachDesc" ColumnName="MachDesc" />
+                <ScalarProperty Name="MachineID" ColumnName="MachineID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperationDetails">
+            <EntityTypeMapping TypeName="PerformaneAnalyzerModel.OperationDetail">
+              <MappingFragment StoreEntitySet="OperationDetails">
+                <ScalarProperty Name="OprtnId" ColumnName="OprtnId" />
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+                <ScalarProperty Name="OprnName" ColumnName="OprnName" />
+                <ScalarProperty Name="deleted" ColumnName="deleted" />
+                <ScalarProperty Name="DelayTime" ColumnName="DelayTime" />
+                <ScalarProperty Name="CycleTime" ColumnName="CycleTime" />
+                <ScalarProperty Name="CompId" ColumnName="CompId" />
+                <ScalarProperty Name="OprnDescription" ColumnName="OprnDescription" />
+                <ScalarProperty Name="OprtrId" ColumnName="OprtrId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -177,6 +368,7 @@
                 <ScalarProperty Name="OprtrId" ColumnName="OprtrId" />
                 <ScalarProperty Name="OprtrName" ColumnName="OprtrName" />
                 <ScalarProperty Name="OprtrDescription" ColumnName="OprtrDescription" />
+                <ScalarProperty Name="OperatorID" ColumnName="OperatorID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -187,6 +379,7 @@
                 <ScalarProperty Name="Prjid" ColumnName="Prjid" />
                 <ScalarProperty Name="Cmpid" ColumnName="Cmpid" />
                 <ScalarProperty Name="prjcmpDesc" ColumnName="prjcmpDesc" />
+                <ScalarProperty Name="ComponentId" ColumnName="ComponentId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -196,6 +389,8 @@
                 <ScalarProperty Name="ProjId" ColumnName="ProjId" />
                 <ScalarProperty Name="ProjName" ColumnName="ProjName" />
                 <ScalarProperty Name="ProjDescription" ColumnName="ProjDescription" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="MachId" ColumnName="MachId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -26,6 +26,8 @@ namespace performance_tracker
         }
     
         public virtual DbSet<ComponentDetail> ComponentDetails { get; set; }
+        public virtual DbSet<MachineDetail> MachineDetails { get; set; }
+        public virtual DbSet<OperationDetail> OperationDetails { get; set; }
         public virtual DbSet<OperatorDetail> OperatorDetails { get; set; }
         public virtual DbSet<ProjectComponentDetail> ProjectComponentDetails { get; set; }
         public virtual DbSet<ProjectDetail> ProjectDetails { get; set; }
